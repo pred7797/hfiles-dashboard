@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import supabase from "../../supabase-client";
+import { useUser } from "@clerk/nextjs";
 
 export default function FileSubmission() {
+  const { user } = useUser();
   const [fileType, setFileType] = useState("lab-report");
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
@@ -29,11 +31,12 @@ export default function FileSubmission() {
       .from("user-files")
       .getPublicUrl(filePath);
     const fileUrl = publicUrlData?.publicUrl;
+    const userId = user?.id;
     // Debug log before insert
-    console.log({ file_type: fileType, file_url: fileUrl });
+    console.log({ file_type: fileType, file_url: fileUrl, user_id: userId });
     // Insert metadata into user_files table
     const { error: dbError } = await supabase.from("user_files").insert([
-      { file_type: fileType, file_url: fileUrl },
+      { file_type: fileType, file_url: fileUrl, user_id: userId },
     ]);
     if (dbError) {
       setStatus("Database insert failed: " + dbError.message);
