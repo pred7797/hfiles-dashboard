@@ -8,6 +8,7 @@ export default function FileSubmission() {
   const { user } = useUser();
   const [fileType, setFileType] = useState("lab-report");
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
@@ -36,7 +37,7 @@ export default function FileSubmission() {
     console.log({ file_type: fileType, file_url: fileUrl, user_id: userId });
     // Insert metadata into user_files table
     const { error: dbError } = await supabase.from("user_files").insert([
-      { file_type: fileType, file_url: fileUrl, user_id: userId },
+      { file_type: fileType, file_url: fileUrl, user_id: userId, file_name: fileName },
     ]);
     if (dbError) {
       setStatus("Database insert failed: " + dbError.message);
@@ -50,6 +51,21 @@ export default function FileSubmission() {
     <div className="p-8 bg-gray-50 rounded-lg border border-gray-200 mt-8 w-[400px]">
       <h2 className="mb-4">File Submission</h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="fileName" className="block mb-2">
+            File Name
+          </label>
+          <input
+            type="text"
+            id="fileName"
+            name="fileName"
+            className="w-full p-2 rounded border border-gray-300"
+            value={fileName}
+            onChange={e => setFileName(e.target.value)}
+            placeholder="Enter file name"
+            required
+          />
+        </div>
         <div>
           <label htmlFor="fileType" className="block mb-2">
             File Type

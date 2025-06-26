@@ -19,7 +19,7 @@ export default function UserFiles() {
       setLoading(true);
       const { data, error } = await supabase
         .from("user_files")
-        .select("id, file_type, file_url, created_at")
+        .select("id,file_name, file_type, file_url, created_at")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
       if (error) {
@@ -57,6 +57,8 @@ export default function UserFiles() {
                   <span className="text-xs text-gray-500 text-center">Preview not available</span>
                 )}
               </div>
+              <div className="text-sm font-semibold text-center mb-1">{file.file_name}</div>
+              <div className="text-xs text-gray-600 text-center mb-2">{file.file_type}</div>
               <button
                 className="w-full py-1 mb-1 bg-yellow-300 text-black rounded font-semibold"
                 onClick={() => window.open(file.file_url, '_blank')}
