@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import UserCard from "./components/UserCard";
 import FileSubmission from "./components/FileSubmission";
+import UserFiles from "./components/UserFiles";
 
 export default function Home() {
   return (
@@ -11,9 +12,12 @@ export default function Home() {
         </h1>
       </SignedOut>
       <SignedIn>
-        <div className="flex gap-8 items-start w-full justify-center">
-          <UserCard />
-          <FileSubmission />
+        <div className="flex flex-col items-center w-full justify-center">
+          <div className="flex gap-8 items-start w-full justify-center">
+            <UserCard />
+            <FileSubmission />
+          </div>
+          <UserFiles />
         </div>
       </SignedIn>
     </main>
