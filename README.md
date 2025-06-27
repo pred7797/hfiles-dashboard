@@ -124,4 +124,4 @@ USING (bucket_id = 'user-files');
 
 ## 📸Live Preview
 
-![Demo GIF](https://oualfy237r.ufs.sh/f/NBKEpf9FnpKGCdZZfNEmkBJiGdEh3b7aQ5YrFAsjLHf1t6wv)
+![HFiles_dashboard_preview (4)](https://github.com/user-attachments/assets/4e2a9e59-c0af-4136-94e3-91abdbc18543)
