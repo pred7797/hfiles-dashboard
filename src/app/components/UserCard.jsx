@@ -30,13 +30,13 @@ export default function UserCard() {
   if (!user) return null;
 
   return (
-    <div className="flex flex-col items-center gap-4 p-8 bg-gray-50 rounded-lg border border-gray-200 mt-8 w-[400px]">
+    <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-lg border border-gray-200 mt-8 w-full max-w-[400px]">
       <img
         src={user.imageUrl}
         alt={`${user.firstName} ${user.lastName}'s profile picture`}
-        className="w-20 h-20 rounded-full"
+        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full"
       />
-      <div>
+      <div className="text-center sm:text-left w-full">
         <h2>
           {user.firstName} {user.lastName}
         </h2>
@@ -46,9 +46,9 @@ export default function UserCard() {
         <p className="text-zinc-600">
           Phone: {user.phoneNumbers[0]?.phoneNumber || "Not available"}
         </p>
-        <div className="mt-2 flex items-center">
+        <div className="mt-2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
           <span className="block text-zinc-600 mb-1">Gender:</span>
-          <label className="mr-4 px-1">
+          <label className="flex items-center">
             <input
               type="radio"
               name="gender"
@@ -59,7 +59,7 @@ export default function UserCard() {
             />
             Male
           </label>
-          <label>
+          <label className="flex items-center">
             <input
               type="radio"
               name="gender"
@@ -72,7 +72,7 @@ export default function UserCard() {
           </label>
         </div>
         <button
-          className="mt-3 px-4 py-1 bg-blue-500 text-white rounded"
+          className="mt-3 px-4 py-2 bg-blue-500 text-white rounded w-full sm:w-auto"
           onClick={async () => {
             setStatus("Updating...");
             const userId = user.id;

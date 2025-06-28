@@ -34,7 +34,7 @@ export default function FileSubmission() {
     const fileUrl = publicUrlData?.publicUrl;
     const userId = user?.id;
     // Debug log before insert
-    console.log({ file_type: fileType, file_url: fileUrl, user_id: userId });
+    // console.log({ file_type: fileType, file_url: fileUrl, user_id: userId });
     // Insert metadata into user_files table
     const { error: dbError } = await supabase.from("user_files").insert([
       { file_type: fileType, file_url: fileUrl, user_id: userId, file_name: fileName },
@@ -48,7 +48,7 @@ export default function FileSubmission() {
   };
 
   return (
-    <div className="p-8 bg-gray-50 rounded-lg border border-gray-200 mt-8 w-[400px]">
+    <div className="p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-lg border border-gray-200 mt-8 w-full max-w-[400px]">
       <h2 className="mb-4">File Submission</h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div>
@@ -59,7 +59,7 @@ export default function FileSubmission() {
             type="text"
             id="fileName"
             name="fileName"
-            className="w-full p-2 rounded border border-gray-300"
+            className="w-full p-2 sm:p-3 rounded border border-gray-300"
             value={fileName}
             onChange={e => setFileName(e.target.value)}
             placeholder="Enter file name"
@@ -73,7 +73,7 @@ export default function FileSubmission() {
           <select
             id="fileType"
             name="fileType"
-            className="w-full p-2 rounded border border-gray-300"
+            className="w-full p-2 sm:p-3 rounded border border-gray-300"
             value={fileType}
             onChange={e => setFileType(e.target.value)}
           >
@@ -93,13 +93,13 @@ export default function FileSubmission() {
             type="file"
             id="fileUpload"
             name="fileUpload"
-            className="w-full p-2 rounded border border-gray-300"
+            className="w-full p-2 sm:p-3 rounded border border-gray-300"
             onChange={e => setFile(e.target.files[0])}
           />
         </div>
         <button
           type="submit"
-          className="p-3 bg-blue-500 text-white border-none rounded cursor-pointer"
+          className="p-3 sm:p-4 bg-blue-500 text-white border-none rounded cursor-pointer w-full"
         >
           Submit
         </button>
