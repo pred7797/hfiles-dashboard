@@ -12,8 +12,8 @@ export default function Home() {
         </h1>
       </SignedOut>
       <SignedIn>
-        <div className="flex flex-col items-center w-full justify-center">
-          <div className="flex gap-8 items-start w-full justify-center">
+        <div className="flex flex-col items-center w-full justify-center px-4">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 items-center lg:items-start w-full justify-center">
             <UserCard />
             <FileSubmission />
           </div>
